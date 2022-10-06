@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PkoGenerator", "PkoGenerator\PkoGenerator.csproj", "{9618482B-4812-4C0A-84CA-46CD512EFA78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PkoGenerator.Tests", "PkoGenerator.Tests\PkoGenerator.Tests.csproj", "{C80B40B9-D10D-4D6D-9FA5-54A0846A475D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9618482B-4812-4C0A-84CA-46CD512EFA78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9618482B-4812-4C0A-84CA-46CD512EFA78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9618482B-4812-4C0A-84CA-46CD512EFA78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9618482B-4812-4C0A-84CA-46CD512EFA78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C80B40B9-D10D-4D6D-9FA5-54A0846A475D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C80B40B9-D10D-4D6D-9FA5-54A0846A475D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C80B40B9-D10D-4D6D-9FA5-54A0846A475D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C80B40B9-D10D-4D6D-9FA5-54A0846A475D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A42D8B1-A45C-4E43-B57B-4F04D2539F98}
+	EndGlobalSection
+EndGlobal
