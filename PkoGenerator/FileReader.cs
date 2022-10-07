@@ -21,9 +21,13 @@ namespace PkoGenerator
                 using (var doc = SpreadsheetDocument.Open(fs, false))
                 {
                     var workbookPart = doc.WorkbookPart;
-                    var sstpart = workbookPart.GetPartsOfType<SharedStringTablePart>().First();
+                    var sstpart = workbookPart.GetPartsOfType<SharedStringTablePart>().FirstOrDefault();
+                    if (sstpart == null) 
+                        return result;
                     var sst = sstpart.SharedStringTable;
-                    var worksheetPart = workbookPart.WorksheetParts.First();
+                    var worksheetPart = workbookPart.WorksheetParts.FirstOrDefault();
+                    if (worksheetPart == null)
+                        return result;
                     var sheet = worksheetPart.Worksheet;
                     var rows = sheet.Descendants<Row>();
                     foreach (var row in rows)
