@@ -29,7 +29,7 @@ namespace PkoGenerator
                     foreach (var row in rows)
                     {
                         var accountingOperation = AccountingOperation.Parse(row);
-                        result.Add(accountingOperation);
+                        result.Add((T)accountingOperation);
                     }
                 }
             }
