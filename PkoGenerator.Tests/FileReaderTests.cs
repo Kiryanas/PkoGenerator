@@ -16,6 +16,13 @@ namespace PkoGenerator.Tests
             var rows = fileReader.ReadXlsx<AccountingOperation>(path);
             Assert.NotNull(rows);
             Assert.AreEqual(3, rows.Count());
+            rows[0].CounterpartyName = "Ромашка, ООО";
+            rows[1].CounterpartyName = "Солнце, ООО";
+            rows[2].CounterpartyName = "Радость, ООО";
+            rows[0].Amount = 1000;
+            rows[1].Amount = 15000.50M;
+            rows[2].Amount = 3000;
+
         }
 
         /// <summary>

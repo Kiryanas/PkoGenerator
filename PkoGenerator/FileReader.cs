@@ -32,12 +32,14 @@ namespace PkoGenerator
                     var rows = sheet.Descendants<Row>();
                     foreach (var row in rows)
                     {
-                        var accountingOperation = AccountingOperation.Parse(row);
+                        var accountingOperation = AccountingOperation.Parse(sst, row);
                         result.Add((T)accountingOperation);
                     }
                 }
             }
             return result;       
         }
+
+
     }
 }
