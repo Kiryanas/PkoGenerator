@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace PkoGenerator
 {
+    /// <summary>
+    /// Чтение входного файла Excel с бухгалтерскими операциями (контаргенты и суммы)
+    /// </summary>
     public class FileReader
     {
         public List<T> ReadXlsx<T>(string path) where T : AccountingOperation

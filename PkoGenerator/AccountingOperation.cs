@@ -5,10 +5,27 @@ using System.Linq;
 
 namespace PkoGenerator
 {
+    /// <summary>
+    /// Бухгалтерская операция
+    /// </summary>
     public class AccountingOperation
     {
+        /// <summary>
+        /// Название контрагента
+        /// </summary>
         public string CounterpartyName;
+
+        /// <summary>
+        /// Сумма операции
+        /// </summary>
         public decimal Amount;
+
+        /// <summary>
+        /// Конвертация строки файла Excel в бухгалтерскую операцию.
+        /// </summary>
+        /// <param name="sharedStringTable">Таблица строковых значений файла Excel.</param>
+        /// <param name="row">Строка файла Excel.</param>
+        /// <returns>Бухгалтерская операция.</returns>
         public static AccountingOperation Parse(SharedStringTable sharedStringTable, Row row)
         {
             var accountingOperation = new AccountingOperation();
