@@ -57,7 +57,6 @@ namespace PkoGenerator.Tests
             var generator = new Generator(Environment.CurrentDirectory);
             var operation = new AccountingOperation() { CounterpartyName = "Очень длинное название ООО \"Ромашка\"", Amount = 35000 };
             Assert.IsFalse(generator.GenerateSinglePko(operation));
-
         }
 
         /// <summary>
@@ -120,6 +119,5 @@ namespace PkoGenerator.Tests
             }
             Assert.AreEqual("ООО \"Ромашка\"", str);
         }
-
     }
 }

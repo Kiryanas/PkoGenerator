@@ -22,7 +22,6 @@ namespace PkoGenerator.Tests
             rows[0].Amount = 1000;
             rows[1].Amount = 15000.50M;
             rows[2].Amount = 3000;
-
         }
 
         /// <summary>
