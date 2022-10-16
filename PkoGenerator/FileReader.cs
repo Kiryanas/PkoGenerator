@@ -8,10 +8,16 @@ using System.Linq;
 namespace PkoGenerator
 {
     /// <summary>
-    /// Чтение входного файла Excel с бухгалтерскими операциями (контаргенты и суммы)
+    /// Класс для чтения файлов Excel.
     /// </summary>
     public class FileReader
     {
+        /// <summary>
+        /// Прочитать файл xlsx. 
+        /// </summary>
+        /// <typeparam name="T">Бухгалтерская операция.</typeparam>
+        /// <param name="path">Путь до файла xlsx.</param>
+        /// <returns>Список бухгалтерских операций.</returns>
         public List<T> ReadXlsx<T>(string path) where T : AccountingOperation
         {
             if (!File.Exists(path))

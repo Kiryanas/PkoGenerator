@@ -100,7 +100,7 @@ namespace PkoGenerator.Tests
         {
             var generator = new Generator(Environment.CurrentDirectory);
             var pkoFilePath = "TestExcelFile.xlsx";
-            File.Copy(Generator.TemplatePath, pkoFilePath, true);
+            File.Copy(Generator.PkoTemplatePath, pkoFilePath, true);
             Assert.DoesNotThrow(() => { generator.WriteToCell(pkoFilePath, "A", 2, "ООО \"Ромашка\""); });
             var str = string.Empty;
             using (var fs = new FileStream(pkoFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))

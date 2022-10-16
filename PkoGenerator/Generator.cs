@@ -7,10 +7,19 @@ using DocumentFormat.OpenXml;
 
 namespace PkoGenerator
 {
+    /// <summary>
+    /// Генератор.
+    /// </summary>
     public class Generator
     {
-        public const string TemplatePath = "SimpleOrderTemplate.xlsx";
+        /// <summary>
+        /// Путь к файлу шаблона ПКО.
+        /// </summary>
+        public const string PkoTemplatePath = "SimpleOrderTemplate.xlsx";
 
+        /// <summary>
+        /// Папка для генерации ПКО.
+        /// </summary>
         public string Destination { get; private set; }
 
         /// <summary>
@@ -34,12 +43,19 @@ namespace PkoGenerator
             pkoName = pkoName.Replace(',', '_');
             pkoName = pkoName.Replace('"', '_');
             var pkoFilePath = Path.Combine(this.Destination, pkoName);
-            File.Copy(TemplatePath, pkoFilePath, true);
+            File.Copy(PkoTemplatePath, pkoFilePath, true);
             this.WriteToCell(pkoFilePath, "A", 2, accountingOperation.CounterpartyName);
             this.WriteToCell(pkoFilePath, "B", 2, accountingOperation.Amount.ToString());
             return true;
         }
 
+        /// <summary>
+        /// Записать в ячейку.
+        /// </summary>
+        /// <param name="path">Путь к файлу Excel.</param>
+        /// <param name="columnName">Колонка.</param>
+        /// <param name="rowIndex">Строка.</param>
+        /// <param name="value">Значение.</param>
         public void WriteToCell(string path, string columnName, uint rowIndex, string value)
         {
             using (var fs = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
@@ -66,6 +82,10 @@ namespace PkoGenerator
             }
         }
 
+        /// <summary>
+        /// Генератор.
+        /// </summary>
+        /// <param name="destination">Папка для генерации ПКО.</param>
         public Generator(string destination)
         {
             this.Destination = destination;
