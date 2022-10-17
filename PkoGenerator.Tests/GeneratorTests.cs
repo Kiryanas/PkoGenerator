@@ -1,4 +1,4 @@
-using DocumentFormat.OpenXml.Packaging;
+п»їusing DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using NUnit.Framework;
 
@@ -8,7 +8,7 @@ namespace PkoGenerator.Tests
     public class GeneratorTests
     {
         /// <summary>
-        /// Создание пустого ПКО
+        /// РЎРѕР·РґР°РЅРёРµ РїСѓСЃС‚РѕРіРѕ РџРљРћ
         /// </summary>
         [Test]
         public void CreateNew()
@@ -17,18 +17,18 @@ namespace PkoGenerator.Tests
         }
 
         /// <summary>
-        /// Создание ПКО для одного контрагента
+        /// РЎРѕР·РґР°РЅРёРµ РџРљРћ РґР»СЏ РѕРґРЅРѕРіРѕ РєРѕРЅС‚СЂР°РіРµРЅС‚Р°
         /// </summary>
         [Test]
         public void GenerateSinglePko()
         {
             var generator = new Generator(Environment.CurrentDirectory);
-            var operation = new AccountingOperation() { CounterpartyName = "ООО \"Ромашка\"", Amount = 35000 };
+            var operation = new AccountingOperation() { CounterpartyName = "РћРћРћ \"Р РѕРјР°С€РєР°\"", Amount = 35000 };
             Assert.IsTrue(generator.GenerateSinglePko(operation));
-            FileAssert.Exists("35000ООО _Ромашка_.xlsx");
+            FileAssert.Exists("35000РћРћРћ _Р РѕРјР°С€РєР°_.xlsx");
             var name = string.Empty;
             var amount = string.Empty;
-            using (var fs = new FileStream("35000ООО _Ромашка_.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            using (var fs = new FileStream("35000РћРћРћ _Р РѕРјР°С€РєР°_.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 using (var doc = SpreadsheetDocument.Open(fs, false))
                 {
@@ -44,34 +44,34 @@ namespace PkoGenerator.Tests
                     amount = amountCell.CellValue.InnerText;
                 }
             }
-            Assert.AreEqual("ООО \"Ромашка\"", name);
+            Assert.AreEqual("РћРћРћ \"Р РѕРјР°С€РєР°\"", name);
             Assert.AreEqual("35000", amount);
         }
 
         /// <summary>
-        ///  Если Контрагент имеет слишком длинное наименование, ПКО не формируется
+        ///  Р•СЃР»Рё РљРѕРЅС‚СЂР°РіРµРЅС‚ РёРјРµРµС‚ СЃР»РёС€РєРѕРј РґР»РёРЅРЅРѕРµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ, РџРљРћ РЅРµ С„РѕСЂРјРёСЂСѓРµС‚СЃСЏ
         /// </summary>
         [Test]
         public void TooLongCounterpartyName()
         {
             var generator = new Generator(Environment.CurrentDirectory);
-            var operation = new AccountingOperation() { CounterpartyName = "Очень длинное название ООО \"Ромашка\"", Amount = 35000 };
+            var operation = new AccountingOperation() { CounterpartyName = "РћС‡РµРЅСЊ РґР»РёРЅРЅРѕРµ РЅР°Р·РІР°РЅРёРµ РћРћРћ \"Р РѕРјР°С€РєР°\"", Amount = 35000 };
             Assert.IsFalse(generator.GenerateSinglePko(operation));
         }
 
         /// <summary>
-        ///  Если Сумма имеет отрицательное значение, ПКО не формируется
+        ///  Р•СЃР»Рё РЎСѓРјРјР° РёРјРµРµС‚ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ, РџРљРћ РЅРµ С„РѕСЂРјРёСЂСѓРµС‚СЃСЏ
         /// </summary>
         [Test]
         public void NegativeAmount()
         {
             var generator = new Generator(Environment.CurrentDirectory);
-            var operation = new AccountingOperation() { CounterpartyName = "ООО \"Ромашка\"", Amount = -2 };
+            var operation = new AccountingOperation() { CounterpartyName = "РћРћРћ \"Р РѕРјР°С€РєР°\"", Amount = -2 };
             Assert.IsFalse(generator.GenerateSinglePko(operation));
         }
 
         /// <summary>
-        ///  Если Контрагент имеет пустое значение, ПКО не формируется
+        ///  Р•СЃР»Рё РљРѕРЅС‚СЂР°РіРµРЅС‚ РёРјРµРµС‚ РїСѓСЃС‚РѕРµ Р·РЅР°С‡РµРЅРёРµ, РџРљРћ РЅРµ С„РѕСЂРјРёСЂСѓРµС‚СЃСЏ
         /// </summary>
         [Test]
         public void NullCounterpartyName()
@@ -82,18 +82,18 @@ namespace PkoGenerator.Tests
         }
 
         /// <summary>
-        ///  Если Сумма имеет значение, равное нулю, ПКО не формируется
+        ///  Р•СЃР»Рё РЎСѓРјРјР° РёРјРµРµС‚ Р·РЅР°С‡РµРЅРёРµ, СЂР°РІРЅРѕРµ РЅСѓР»СЋ, РџРљРћ РЅРµ С„РѕСЂРјРёСЂСѓРµС‚СЃСЏ
         /// </summary>
         [Test]
         public void ZeroAmount()
         {
             var generator = new Generator(Environment.CurrentDirectory);
-            var operation = new AccountingOperation() { CounterpartyName = "ООО \"Ромашка\"", Amount = 0 };
+            var operation = new AccountingOperation() { CounterpartyName = "РћРћРћ \"Р РѕРјР°С€РєР°\"", Amount = 0 };
             Assert.IsFalse(generator.GenerateSinglePko(operation));
         }
 
         /// <summary>
-        ///  Запись в ячейку файла Excel
+        ///  Р—Р°РїРёСЃСЊ РІ СЏС‡РµР№РєСѓ С„Р°Р№Р»Р° Excel
         /// </summary>
         [Test]
         public void WriteToCell()
@@ -101,7 +101,7 @@ namespace PkoGenerator.Tests
             var generator = new Generator(Environment.CurrentDirectory);
             var pkoFilePath = "TestExcelFile.xlsx";
             File.Copy(Generator.PkoTemplatePath, pkoFilePath, true);
-            Assert.DoesNotThrow(() => { generator.WriteToCell(pkoFilePath, "A", 2, "ООО \"Ромашка\""); });
+            Assert.DoesNotThrow(() => { generator.WriteToCell(pkoFilePath, "A", 2, "РћРћРћ \"Р РѕРјР°С€РєР°\""); });
             var str = string.Empty;
             using (var fs = new FileStream(pkoFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
@@ -117,7 +117,7 @@ namespace PkoGenerator.Tests
                     str = cell.CellValue.InnerText;
                 }
             }
-            Assert.AreEqual("ООО \"Ромашка\"", str);
+            Assert.AreEqual("РћРћРћ \"Р РѕРјР°С€РєР°\"", str);
         }
     }
 }
