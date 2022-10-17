@@ -16,12 +16,12 @@ namespace PkoGenerator.Tests
             var rows = fileReader.ReadXlsx<AccountingOperation>(path);
             Assert.NotNull(rows);
             Assert.AreEqual(3, rows.Count());
-            rows[0].CounterpartyName = "Ромашка, ООО";
-            rows[1].CounterpartyName = "Солнце, ООО";
-            rows[2].CounterpartyName = "Радость, ООО";
-            rows[0].Amount = 1000;
-            rows[1].Amount = 15000.50M;
-            rows[2].Amount = 3000;
+            Assert.AreEqual("Ромашка, ООО", rows[0].CounterpartyName);
+            Assert.AreEqual("Солнце, ООО", rows[1].CounterpartyName);
+            Assert.AreEqual("Радость, ООО", rows[2].CounterpartyName);
+            Assert.AreEqual(1000, rows[0].Amount);
+            Assert.AreEqual(15000.50M, rows[1].Amount);
+            Assert.AreEqual(3000, rows[2].Amount);
         }
 
         /// <summary>
