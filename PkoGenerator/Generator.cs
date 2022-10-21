@@ -15,7 +15,7 @@ namespace PkoGenerator
         /// <summary>
         /// Путь к файлу шаблона ПКО.
         /// </summary>
-        public const string PkoTemplatePath = "SimpleOrderTemplate.xlsx";
+        public const string PkoTemplatePath = "OrderTemplate.xlsx";
 
         /// <summary>
         /// Папка для генерации ПКО.
