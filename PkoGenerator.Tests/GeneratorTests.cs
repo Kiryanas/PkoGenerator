@@ -28,6 +28,7 @@ namespace PkoGenerator.Tests
             FileAssert.Exists("35000ООО _Ромашка_.xlsx");
             var name = string.Empty;
             var amount = string.Empty;
+            var cents = string.Empty;
             using (var fs = new FileStream("35000ООО _Ромашка_.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 using (var doc = SpreadsheetDocument.Open(fs, false))
@@ -38,14 +39,17 @@ namespace PkoGenerator.Tests
                     var worksheetPart = workbookPart.WorksheetParts.FirstOrDefault();
                     var sheet = worksheetPart.Worksheet;
                     var cells = sheet.Descendants<Cell>();
-                    var counterpartyNameCell = cells.Where(x => x.CellReference.Value == "A2").First();
-                    var amountCell = cells.Where(x => x.CellReference.Value == "B2").First();
+                    var counterpartyNameCell = cells.Where(x => x.CellReference.Value == "K21").First();
+                    var amountCell = cells.Where(x => x.CellReference.Value == "A27").First();
+                    var centsCell = cells.Where(x => x.CellReference.Value == "BC27").First();
                     name = counterpartyNameCell.CellValue.InnerText;
                     amount = amountCell.CellValue.InnerText;
+                    cents = centsCell.CellValue.InnerText;
                 }
             }
             Assert.AreEqual("ООО \"Ромашка\"", name);
             Assert.AreEqual("35000", amount);
+            Assert.AreEqual("00", cents);
         }
 
         /// <summary>
@@ -101,7 +105,7 @@ namespace PkoGenerator.Tests
             var generator = new Generator(Environment.CurrentDirectory);
             var pkoFilePath = "TestExcelFile.xlsx";
             File.Copy(Generator.PkoTemplatePath, pkoFilePath, true);
-            Assert.DoesNotThrow(() => { generator.WriteToCell(pkoFilePath, "A", 2, "ООО \"Ромашка\""); });
+            Assert.DoesNotThrow(() => { generator.WriteToCell(pkoFilePath, "K", 21, "ООО \"Ромашка\""); });
             var str = string.Empty;
             using (var fs = new FileStream(pkoFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
@@ -113,7 +117,7 @@ namespace PkoGenerator.Tests
                     var worksheetPart = workbookPart.WorksheetParts.FirstOrDefault();
                     var sheet = worksheetPart.Worksheet;
                     var cells = sheet.Descendants<Cell>();
-                    var cell = cells.Where(x => x.CellReference.Value == "A2").First();
+                    var cell = cells.Where(x => x.CellReference.Value == "K21").First();
                     str = cell.CellValue.InnerText;
                 }
             }

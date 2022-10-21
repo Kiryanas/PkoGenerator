@@ -44,8 +44,11 @@ namespace PkoGenerator
             pkoName = pkoName.Replace('"', '_');
             var pkoFilePath = Path.Combine(this.Destination, pkoName);
             File.Copy(PkoTemplatePath, pkoFilePath, true);
-            this.WriteToCell(pkoFilePath, "A", 2, accountingOperation.CounterpartyName);
-            this.WriteToCell(pkoFilePath, "B", 2, accountingOperation.Amount.ToString());
+            this.WriteToCell(pkoFilePath, "K", 21, accountingOperation.CounterpartyName);
+            this.WriteToCell(pkoFilePath, "A", 27, Math.Truncate(accountingOperation.Amount).ToString());
+            var cents = Math.Truncate((accountingOperation.Amount - Math.Truncate(accountingOperation.Amount)) * 100);
+            this.WriteToCell(pkoFilePath, "BC", 27, cents.ToString("00"));
+
             return true;
         }
 
