@@ -29,6 +29,7 @@ namespace PkoGenerator.Tests
             var name = string.Empty;
             var amount = string.Empty;
             var cents = string.Empty;
+            var amountInWords = string.Empty;
             using (var fs = new FileStream("35000ООО _Ромашка_.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 using (var doc = SpreadsheetDocument.Open(fs, false))
@@ -42,14 +43,17 @@ namespace PkoGenerator.Tests
                     var counterpartyNameCell = cells.Where(x => x.CellReference.Value == "K21").First();
                     var amountCell = cells.Where(x => x.CellReference.Value == "A27").First();
                     var centsCell = cells.Where(x => x.CellReference.Value == "BC27").First();
+                    var amountInWordsCell = cells.Where(x => x.CellReference.Value == "H25").First();
                     name = counterpartyNameCell.CellValue.InnerText;
                     amount = amountCell.CellValue.InnerText;
                     cents = centsCell.CellValue.InnerText;
+                    amountInWords = amountInWordsCell.CellValue.InnerText;
                 }
             }
             Assert.AreEqual("ООО \"Ромашка\"", name);
             Assert.AreEqual("35000", amount);
             Assert.AreEqual("00", cents);
+            Assert.AreEqual("35000 рублей 00 копеек", amountInWords); 
         }
 
         /// <summary>
@@ -122,6 +126,19 @@ namespace PkoGenerator.Tests
                 }
             }
             Assert.AreEqual("ООО \"Ромашка\"", str);
+        }
+
+        /// <summary>
+        ///  Сумма прописью
+        /// </summary>
+        [Test]
+        public void DecimalToWords()
+        {
+            var generator = new Generator(null);
+            var words = generator.DecimalToWords(3500.90M);
+            Assert.AreEqual("3500 рублей 90 копеек", words);
+            words = generator.DecimalToWords(0);
+            Assert.AreEqual("0 рублей 00 копеек", words);
         }
     }
 }

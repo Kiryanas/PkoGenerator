@@ -48,8 +48,16 @@ namespace PkoGenerator
             this.WriteToCell(pkoFilePath, "A", 27, Math.Truncate(accountingOperation.Amount).ToString());
             var cents = Math.Truncate((accountingOperation.Amount - Math.Truncate(accountingOperation.Amount)) * 100);
             this.WriteToCell(pkoFilePath, "BC", 27, cents.ToString("00"));
-
+            this.WriteToCell(pkoFilePath, "H", 25, this.DecimalToWords(accountingOperation.Amount));
             return true;
+        }
+
+        public string DecimalToWords(decimal number)
+        {
+            var integerPart = (int)Math.Truncate(number);
+            var centsPart = (int)Math.Truncate((number - Math.Truncate(number)) * 100);
+            var words = $"{integerPart} рублей {centsPart.ToString("00")} копеек";
+            return words;
         }
 
         /// <summary>
