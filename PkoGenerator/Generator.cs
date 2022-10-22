@@ -36,7 +36,7 @@ namespace PkoGenerator
                 return false;
             if (accountingOperation.Amount <= 0)
                 return false;
-            if (accountingOperation.CounterpartyName.Length > 20)
+            if (accountingOperation.CounterpartyName.Length > 35)
                 return false;
 
             var pkoName = string.Join(accountingOperation.CounterpartyName, accountingOperation.Amount.ToString(), ".xlsx");
@@ -45,19 +45,26 @@ namespace PkoGenerator
             var pkoFilePath = Path.Combine(this.Destination, pkoName);
             File.Copy(PkoTemplatePath, pkoFilePath, true);
             this.WriteToCell(pkoFilePath, "K", 21, accountingOperation.CounterpartyName);
-            this.WriteToCell(pkoFilePath, "A", 27, Math.Truncate(accountingOperation.Amount).ToString());
+            this.WriteToCell(pkoFilePath, "CF", 12, accountingOperation.CounterpartyName);
+            this.WriteToCell(pkoFilePath, "CC", 19, Math.Truncate(accountingOperation.Amount).ToString());
             var cents = Math.Truncate((accountingOperation.Amount - Math.Truncate(accountingOperation.Amount)) * 100);
             this.WriteToCell(pkoFilePath, "BC", 27, cents.ToString("00"));
-            this.WriteToCell(pkoFilePath, "H", 25, this.DecimalToWords(accountingOperation.Amount));
+            this.WriteToCell(pkoFilePath, "CY", 19, cents.ToString("00"));
+            this.WriteToCell(pkoFilePath, "CY", 24, cents.ToString("00"));
+            this.WriteToCell(pkoFilePath, "H", 25, this.IntegerPartToWords(accountingOperation.Amount));
+            this.WriteToCell(pkoFilePath, "BW", 21, this.IntegerPartToWords(accountingOperation.Amount));
             return true;
         }
 
-        public string DecimalToWords(decimal number)
+        /// <summary>
+        /// Получить целую часть суммы прописью.
+        /// </summary>
+        /// <param name="number">Сумма.</param>
+        /// <returns>Целая часть суммы прописью.</returns>
+        public string IntegerPartToWords(decimal number)
         {
             var integerPart = (int)Math.Truncate(number);
-            var centsPart = (int)Math.Truncate((number - Math.Truncate(number)) * 100);
-            var words = $"{integerPart} рублей {centsPart.ToString("00")} копеек";
-            return words;
+            return RusNumber.Str(integerPart).Trim();
         }
 
         /// <summary>

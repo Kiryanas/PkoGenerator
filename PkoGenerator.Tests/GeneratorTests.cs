@@ -41,7 +41,7 @@ namespace PkoGenerator.Tests
                     var sheet = worksheetPart.Worksheet;
                     var cells = sheet.Descendants<Cell>();
                     var counterpartyNameCell = cells.Where(x => x.CellReference.Value == "K21").First();
-                    var amountCell = cells.Where(x => x.CellReference.Value == "A27").First();
+                    var amountCell = cells.Where(x => x.CellReference.Value == "CC19").First();
                     var centsCell = cells.Where(x => x.CellReference.Value == "BC27").First();
                     var amountInWordsCell = cells.Where(x => x.CellReference.Value == "H25").First();
                     name = counterpartyNameCell.CellValue.InnerText;
@@ -53,7 +53,7 @@ namespace PkoGenerator.Tests
             Assert.AreEqual("ООО \"Ромашка\"", name);
             Assert.AreEqual("35000", amount);
             Assert.AreEqual("00", cents);
-            Assert.AreEqual("35000 рублей 00 копеек", amountInWords); 
+            Assert.AreEqual("Тридцать пять тысяч", amountInWords); 
         }
 
         /// <summary>
@@ -129,16 +129,16 @@ namespace PkoGenerator.Tests
         }
 
         /// <summary>
-        ///  Сумма прописью
+        ///  Целая часть суммы в рублях прописью
         /// </summary>
         [Test]
-        public void DecimalToWords()
+        public void IntegerPartToWords()
         {
             var generator = new Generator(null);
-            var words = generator.DecimalToWords(3500.90M);
-            Assert.AreEqual("3500 рублей 90 копеек", words);
-            words = generator.DecimalToWords(0);
-            Assert.AreEqual("0 рублей 00 копеек", words);
+            var words = generator.IntegerPartToWords(3500.90M);
+            Assert.AreEqual("Три тысячи пятьсот", words);
+            words = generator.IntegerPartToWords(0);
+            Assert.AreEqual("0", words);
         }
     }
 }
