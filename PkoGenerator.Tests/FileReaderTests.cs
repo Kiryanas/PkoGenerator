@@ -6,7 +6,7 @@ namespace PkoGenerator.Tests
     public class FileReaderTests
     {
         /// <summary>
-        /// Основной кейс - чтение корректного файла с данными
+        /// Основной кейс - чтение корректного файла с данными.
         /// </summary>
         [Test]
         public void ReadXlsx()
@@ -25,7 +25,7 @@ namespace PkoGenerator.Tests
         }
 
         /// <summary>
-        /// Пустой файл
+        /// Пустой файл.
         /// </summary>
         [Test]
         public void ReadEmptyXlsx()
@@ -37,7 +37,7 @@ namespace PkoGenerator.Tests
         }
 
         /// <summary>
-        /// Несуществующий путь
+        /// Несуществующий путь.
         /// </summary>
         [Test]
         public void FileNotExist()
@@ -48,7 +48,7 @@ namespace PkoGenerator.Tests
         }
 
         /// <summary>
-        /// Неподходящий формат файла
+        /// Неподходящий формат файла.
         /// </summary>
         [Test]
         public void FileFormatNotSupported()

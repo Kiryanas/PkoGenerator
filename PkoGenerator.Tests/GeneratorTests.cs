@@ -8,7 +8,7 @@ namespace PkoGenerator.Tests
     public class GeneratorTests
     {
         /// <summary>
-        /// Создание пустого ПКО
+        /// Создание пустого ПКО.
         /// </summary>
         [Test]
         public void CreateNew()
@@ -17,7 +17,7 @@ namespace PkoGenerator.Tests
         }
 
         /// <summary>
-        /// Создание ПКО для одного контрагента
+        /// Создание ПКО для одного контрагента.
         /// </summary>
         [Test]
         public void GenerateSinglePko()
@@ -57,7 +57,7 @@ namespace PkoGenerator.Tests
         }
 
         /// <summary>
-        ///  Если Контрагент имеет слишком длинное наименование, ПКО не формируется
+        ///  Если Контрагент имеет слишком длинное наименование, ПКО не формируется.
         /// </summary>
         [Test]
         public void TooLongCounterpartyName()
@@ -68,7 +68,7 @@ namespace PkoGenerator.Tests
         }
 
         /// <summary>
-        ///  Если Сумма имеет отрицательное значение, ПКО не формируется
+        ///  Если Сумма имеет отрицательное значение, ПКО не формируется.
         /// </summary>
         [Test]
         public void NegativeAmount()
@@ -79,7 +79,7 @@ namespace PkoGenerator.Tests
         }
 
         /// <summary>
-        ///  Если Контрагент имеет пустое значение, ПКО не формируется
+        ///  Если Контрагент имеет пустое значение, ПКО не формируется.
         /// </summary>
         [Test]
         public void NullCounterpartyName()
@@ -90,7 +90,7 @@ namespace PkoGenerator.Tests
         }
 
         /// <summary>
-        ///  Если Сумма имеет значение, равное нулю, ПКО не формируется
+        ///  Если Сумма имеет значение, равное нулю, ПКО не формируется.
         /// </summary>
         [Test]
         public void ZeroAmount()
@@ -101,7 +101,7 @@ namespace PkoGenerator.Tests
         }
 
         /// <summary>
-        ///  Запись в ячейку файла Excel
+        ///  Запись в ячейку файла Excel.
         /// </summary>
         [Test]
         public void WriteToCell()
@@ -129,7 +129,7 @@ namespace PkoGenerator.Tests
         }
 
         /// <summary>
-        ///  Целая часть суммы в рублях прописью
+        ///  Целая часть суммы в рублях прописью.
         /// </summary>
         [Test]
         public void IntegerPartToWords()

@@ -7,6 +7,9 @@ namespace PkoGenerator.Tests
     [TestFixture]
     public class AccountingOperationTests
     {
+        /// <summary>
+        /// Парсинг бухгалтерской операции из входного файла.
+        /// </summary>
         [Test]
         public void Parse()
         {

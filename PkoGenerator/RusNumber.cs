@@ -19,14 +19,14 @@ namespace PkoGenerator
         };
 
         /// <summary>
-        /// Перевод в строку числа с учётом падежного окончания относящегося к числу существительного
+        /// Перевод в строку числа с учётом падежного окончания, относящегося к числу существительного.
         /// </summary>
-        /// <param name="val">Число</param>
-        /// <param name="male">Род существительного, которое относится к числу</param>
-        /// <param name="one">Форма существительного в единственном числе</param>
-        /// <param name="two">Форма существительного от двух до четырёх</param>
-        /// <param name="five">Форма существительного от пяти и больше</param>
-        /// <returns></returns>
+        /// <param name="val">Число.</param>
+        /// <param name="male">Род существительного, которое относится к числу.</param>
+        /// <param name="one">Форма существительного в единственном числе.</param>
+        /// <param name="two">Форма существительного от двух до четырёх.</param>
+        /// <param name="five">Форма существительного от пяти и больше.</param>
+        /// <returns>Число прописью с учётом падежного окончания, относящегося к числу существительного.</returns>
         public static string Str(int val, bool male, string one, string two, string five)
         {
             string[] frac20 =
@@ -65,13 +65,13 @@ namespace PkoGenerator
         }
 
         /// <summary>
-        /// Выбор правильного падежного окончания существительного
+        /// Выбор правильного падежного окончания существительного.
         /// </summary>
-        /// <param name="val">Число</param>
-        /// <param name="one">Форма существительного в единственном числе</param>
-        /// <param name="two">Форма существительного от двух до четырёх</param>
-        /// <param name="five">Форма существительного от пяти и больше</param>
-        /// <returns>Возвращает существительное с падежным окончанием, которое соответсвует числу</returns>
+        /// <param name="val">Число.</param>
+        /// <param name="one">Форма существительного в единственном числе.</param>
+        /// <param name="two">Форма существительного от двух до четырёх.</param>
+        /// <param name="five">Форма существительного от пяти и больше.</param>
+        /// <returns>Существительное с падежным окончанием, которое соответствует числу.</returns>
         public static string Case(int val, string one, string two, string five)
         {
             int t = (val % 100 > 20) ? val % 10 : val % 20;
@@ -84,10 +84,10 @@ namespace PkoGenerator
             }
         }
         /// <summary>
-        /// Перевод целого числа в строку
+        /// Перевод целого числа в строку.
         /// </summary>
-        /// <param name="val">Число</param>
-        /// <returns>Возвращает строковую запись числа</returns>
+        /// <param name="val">Число.</param>
+        /// <returns>Строковая запись числа.</returns>
         public static string Str(int val)
         {
             bool minus = false;
@@ -118,9 +118,8 @@ namespace PkoGenerator
             r.Insert(0, RusNumber.Str(n, true, "триллиард", "триллиарда", "триллиардов"));
             if (minus) r.Insert(0, "минус ");
 
-            //Делаем первую букву заглавной
+            //Делаем первую букву заглавной.
             r[0] = char.ToUpper(r[0]);
-
             return r.ToString();
         }
     }
