@@ -37,6 +37,9 @@
     <None Update="doc\TestCounterpartiesList.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="doc\Защита проекта PkoGenerator.PPTX">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
